@@ -1,6 +1,7 @@
 package kontroller;
 
 import model.BankAccount;
+import model.Client;
 import model.NodeHistory;
 
 import java.sql.*;
@@ -178,20 +179,47 @@ public class Kernel {
         }
         return arrayList;
     }
+    public Client checkClient(String name, String password){
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        Client client = null;
+        String sql = "select * from client where name = ?";
+        try {
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1,name);
+            preparedStatement.executeUpdate();
+            resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()){
+                if (!resultSet.getString(4).equals(password)){
+                    return null;
+                }
+                client = new Client();
+                client.setId(resultSet.getInt(1));
+                client.setNameClient(resultSet.getString(2));
+                client.setAge(resultSet.getInt(3));
+                client.setGender(resultSet.getString(5));
+                client.setPassword(resultSet.getString(4));
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+        }finally {
+            try {
+                if (resultSet != null)
+                    resultSet.close();
+                if (preparedStatement!=null)
+                    preparedStatement.close();
+            }catch (SQLException e){
+                e.printStackTrace();
+            }
+        }
+        return client;
+    }
     public void close(){
         try {
             assert connection!=null;
             connection.close();
         } catch (SQLException e) {
             e.printStackTrace();
-        }
-    }
-
-    public static void main(String[] args) {
-        Kernel kernel = new Kernel();
-        ArrayList<NodeHistory> arrayList = kernel.getHistory(5);
-        for (NodeHistory n:arrayList) {
-            System.out.println(n);
         }
     }
 }

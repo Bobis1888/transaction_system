@@ -5,34 +5,42 @@ import java.util.ArrayList;
 
 
 public class Client implements Serializable {
-    private String nameClient;
+    private int id;
+    private String clientName;
     private String gender;
     private int age;
+    private String password;
     private ArrayList<BankAccount> bankAccounts;
+    private boolean active;
 
-    Client(){
+    public Client(){
         bankAccounts = new ArrayList<>();
     }
-    Client(String nameClient,String gender,int age,BankAccount bankAccount){
+    Client(String clientName,String gender,int age){
         this();
         this.gender = gender;
         this.age = age;
-        this.nameClient = nameClient;
-        addBankAccount(bankAccount);
+        this.clientName = clientName;
+    }
+    @Override
+    public String toString(){
+        return "Name : " + clientName + " Age : " + age + " Gender : " + gender.toUpperCase();
     }
 
     public ArrayList<BankAccount> getBankAccounts() {
         return bankAccounts;
     }
+
     public void addBankAccount(BankAccount bankAccount){
         bankAccounts.add(bankAccount);
     }
-    public void setNameClient(String nameClient) {
-        this.nameClient = nameClient;
+
+    public void setNameClient(String clientName) {
+        this.clientName = clientName;
     }
 
     public String getNameClient() {
-        return nameClient;
+        return clientName;
     }
 
     public String getGender() {
@@ -49,5 +57,29 @@ public class Client implements Serializable {
 
     public void setAge(int age) {
         this.age = age;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
     }
 }
