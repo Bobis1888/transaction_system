@@ -148,37 +148,24 @@ public class Kernel {
             }
         }
     }
-    //должен возвращать контейнер с историей с кольчеством транзакций число транзакций передаем интом
-    //т.е. надо список из последних пяти транзакций предаем ему число 5 должно работать не тестировал
-    public ArrayList<NodeHistory> getHistory(int numberOfLastItems){
+    //должен возвращать контейнер с историей транзакций
+    public ArrayList<NodeHistory> getHistory(){
         ArrayList<NodeHistory> arrayList = new ArrayList<>();
         Statement statement = null;
         ResultSet resultSet = null;
-        NodeHistory node = new NodeHistory();
-        int maxId = 0;
+        NodeHistory node = null;
         try {
             statement = connection.createStatement();
-            statement.executeUpdate("select max(id) from transaction_history;");
+            statement.executeUpdate("select * from transaction_history;");
             resultSet = statement.getResultSet();
             while (resultSet.next()){
-                maxId = resultSet.getInt(1);
-            }
-            while (numberOfLastItems!=0){
-                if (maxId==0)
-                    break;
                 node = new NodeHistory();
-                statement.executeUpdate("select * from transaction_history where id = " + maxId);
-                resultSet = statement.getResultSet();
-                while (resultSet.next()){
-                    node.setId(resultSet.getInt(1));
-                    node.setNumberSender(resultSet.getInt(2));
-                    node.setNumberRecipient(resultSet.getInt(3));
-                    node.setAmount(resultSet.getInt(4));
-                    node.setDate(resultSet.getString(5));
-                }
+                node.setId(resultSet.getInt(1));
+                node.setNumberSender(resultSet.getInt(2));
+                node.setNumberRecipient(resultSet.getInt(3));
+                node.setAmount(resultSet.getInt(4));
+                node.setDate(resultSet.getString(5));
                 arrayList.add(node);
-                maxId--;
-                numberOfLastItems--;
             }
         }catch (SQLException e){
             e.printStackTrace();
@@ -230,11 +217,10 @@ public class Kernel {
             e.printStackTrace();
         }
     }
-    /*
+
     public static void main(String[] args) {
         Kernel kernel = new Kernel();
-        ArrayList<NodeHistory> bankAccounts = kernel.getHistory(5);
+        ArrayList<NodeHistory> bankAccounts = kernel.getHistory();
         System.out.println(bankAccounts);
     }
-     */
 }

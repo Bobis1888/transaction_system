@@ -16,7 +16,7 @@ public class HistoryServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Kernel kernel = new Kernel();
-        ArrayList<NodeHistory> node = kernel.getHistory(5);
+        ArrayList<NodeHistory> node = kernel.getHistory();
         req.setAttribute("node",node);
         getServletContext().getRequestDispatcher("/log.jsp").forward(req,resp);
     }

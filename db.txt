@@ -9,7 +9,7 @@ create table bank_account
 
 create table client
 (
-    id       int auto_increment
+    id       int(30) auto_increment
         primary key,
     name     varchar(30) not null,
     age      int         not null,
@@ -19,7 +19,8 @@ create table client
 
 create table transaction_history
 (
-    id        int(30)     not null,
+    id        int(30) auto_increment
+        primary key,
     sender    int(30)     not null,
     recipient int(30)     not null,
     amount    int(255)    not null,
