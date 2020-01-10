@@ -2,7 +2,7 @@
 <%@ page import="model.NodeHistory" %><%--
   Created by IntelliJ IDEA.
   User: bobis1888
-  Date: 12/4/19
+  Date: 12/31/19
   Time: 7:23 PM
   To change this template use File | Settings | File Templates.
 --%>
@@ -14,13 +14,12 @@
 <body>
 <jsp:include page="links.html"/>
 <form action="/history">
-    Show the number of recent transactions :<input type="text" name="number">
-    <input type="submit" value="Show">
+    Show the history  <input type="submit" value="Show">
     <br>
     <%
         ArrayList<NodeHistory> arrayList = (ArrayList<NodeHistory>) request.getAttribute("node");
         if (arrayList!=null) {
-            for (NodeHistory n:arrayList){
+            for (NodeHistory n : arrayList){
                 out.print("<br>");
                 out.print(n);
                 out.print("<br>");

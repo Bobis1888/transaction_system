@@ -1,0 +1,45 @@
+body{
+    background-color: rgb(184, 184, 184);
+}
+.links{
+    text-align: center;
+    border: 2px solid black;
+    border-radius: 4px;
+}
+.links a{
+    padding: 2px 8px;
+    margin: 0 20px 0 20px;
+    font-style: normal;
+    text-decoration: none;
+    color: black;
+}
+.links a:hover{
+	background-color: rgb(13, 78, 105);
+	border-radius: 5px;
+    color: white;
+}
+.header{
+    text-align: center;
+    color: white;
+    border-radius: 2px;
+    border: 2px solid black;
+    font-style: italic;
+    margin: 10px;
+    background: url("image/logo061-1024x450.png") no-repeat;
+    background-size: cover;
+}
+.label{
+    position: absolute;
+    left: 55%;
+}
+.form_transaction{
+    display: inline-block;
+    width: 30%;
+    position: relative;
+    left: 25%;
+}
+.beta{
+    position: relative;
+    display: inline-block;
+    left: 45%;
+}

@@ -1,3 +1,6 @@
+создать пользователя для базы и прописать логин,пароль и URL в resources/login.properties
+создать базу с таблицами
+
 create database Bank;
 create table bank_account
 (

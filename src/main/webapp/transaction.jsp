@@ -13,14 +13,16 @@
 <body>
 <jsp:include page="links.html"/>
 <h2>Hello customer</h2>
-<form action="/transaction">
-    Account number sender :<label>
+<form action="/transaction" class="form_transaction">
+    Account number sender :<label class="label">
     <input type="text" name="sender">
 </label>
-    Account number recipient : <label>
+    <br>
+    Account number recipient : <label class="label">
     <input type="text" name="recipient">
 </label>
-    Amount :<label>
+    <br>
+    Amount :<label class="label">
     <input type="text" name="amount">
 </label>
     <input type="submit" value="Transaction">
