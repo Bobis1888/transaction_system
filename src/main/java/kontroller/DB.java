@@ -11,6 +11,7 @@ public class DB {
     private String forName;
     DB(){
         try {
+            //переписать путь по нормальному
             File file = new File("/home/bobis1888/Git/transaction_system/src/main/resources/login.properties");
             FileReader fileReader = new FileReader(file);
             Properties properties = new Properties();
@@ -24,6 +25,10 @@ public class DB {
         }
     }
 
+    public static void main(String[] args) {
+        DB db = new DB();
+        System.out.println(db.pass);
+    }
     public String getLogin() {
         return login;
     }

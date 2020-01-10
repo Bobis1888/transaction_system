@@ -17,7 +17,8 @@ public class Kernel {
         db = new DB();
         initConnect();
     }
-
+    //инициализировать коннект
+    //после всех операция вызвать .close();
     private void initConnect(){
         try {
             Class.forName(db.getForName());
@@ -27,6 +28,43 @@ public class Kernel {
         }
     }
 
+    //изменить баланс номера счета
+    private void updateBankAccount(BankAccount bankAccount){
+        String sql = "update Bank.bank_account set bank_account.balance = ? where number_bank_account = ?";
+        try {
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, String.valueOf(bankAccount.getAccountBalance()));
+            preparedStatement.setString(2,String.valueOf(bankAccount.getAccountNumber()));
+            preparedStatement.executeUpdate();
+        }catch (SQLException e){
+            e.printStackTrace();
+        } finally {
+            try {
+                assert preparedStatement != null;
+                preparedStatement.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+    //если счета активны и на счету отправителя есть достаточно средств то совершаем транзакцию
+    public boolean transaction(String numberBankAccountSender,String numberBankAccountRecipient,int amount){
+        BankAccount bankAccountSender = getBankAccount(numberBankAccountSender);
+        BankAccount bankAccountRecipient = getBankAccount(numberBankAccountRecipient);
+        //надо переписать чтобы получать данные из БД
+        if (bankAccountSender.getAccountBalance() < amount)
+            return false;
+        if (bankAccountSender.isActive()&&bankAccountRecipient.isActive()){
+            bankAccountRecipient.addAccountBalance(amount);
+            bankAccountSender.deductAccountBalance(amount);
+            updateBankAccount(bankAccountSender);
+            updateBankAccount(bankAccountRecipient);
+            writeHistory(numberBankAccountSender,numberBankAccountRecipient,amount);
+            return true;
+        }
+        return false;
+    }
+    //возвращает наполненный из БД BankAccount принимает номер счета
     private BankAccount getBankAccount(String numberBankAccount){
         BankAccount bankAccount = new BankAccount();
         String sql = "SELECT * from bank_account where number_bank_account = ?";
@@ -52,39 +90,8 @@ public class Kernel {
         }
         return bankAccount;
     }
-    private void updateBankAccount(BankAccount bankAccount){
-        String sql = "update Bank.bank_account set bank_account.balance = ? where number_bank_account = ?";
-        try {
-            preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setString(1, String.valueOf(bankAccount.getAccountBalance()));
-            preparedStatement.setString(2,String.valueOf(bankAccount.getAccountNumber()));
-            preparedStatement.executeUpdate();
-        }catch (SQLException e){
-            e.printStackTrace();
-        } finally {
-            try {
-                assert preparedStatement != null;
-                preparedStatement.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-    }
-    public boolean transaction(String numberBankAccountSender,String numberBankAccountRecipient,int amount){
-        BankAccount bankAccountSender = getBankAccount(numberBankAccountSender);
-        BankAccount bankAccountRecipient = getBankAccount(numberBankAccountRecipient);
-        if (bankAccountSender.getAccountBalance() < amount)
-            return false;
-        if (bankAccountSender.isActive()&&bankAccountRecipient.isActive()){
-            bankAccountRecipient.addAccountBalance(amount);
-            bankAccountSender.deductAccountBalance(amount);
-            updateBankAccount(bankAccountSender);
-            updateBankAccount(bankAccountRecipient);
-            writeHistory(numberBankAccountSender,numberBankAccountRecipient,amount);
-            return true;
-        }
-        return false;
-    }
+    //возвращает контейрер с наполненными BankAccount
+    //надо переписать два похожих метода getBankAccount и getListBankAccount
     public ArrayList<BankAccount> getListBankAccount(){
         BankAccount bankAccount;
         ArrayList<BankAccount> bankAccounts = new ArrayList<>();
@@ -92,14 +99,10 @@ public class Kernel {
         ResultSet result = null;
         try {
             statement = connection.createStatement();
-            statement.executeUpdate("select * from bank_account;");
+            statement.executeUpdate("select number_bank_account from bank_account;");
             result = statement.getResultSet();
             while (result.next()){
-                bankAccount = new BankAccount();
-                bankAccount.setAccountNumber(result.getInt(1));
-                bankAccount.setAccountBalance(result.getInt(4));
-                bankAccount.setActive(result.getBoolean(3));
-                bankAccount.setNameOwner(result.getString(2));
+                bankAccount = getBankAccount(result.getString(1));
                 bankAccounts.add(bankAccount);
             }
         }catch (SQLException e){
@@ -120,6 +123,7 @@ public class Kernel {
         }
         return bankAccounts;
     }
+    //пишем историю в БД можно получить методом getHistory()
     private void writeHistory(String numberBankAccountSender, String numberBankAccountRecipient,int amount){
         PreparedStatement preparedStatement = null;
         Date date = new Date();
@@ -144,6 +148,8 @@ public class Kernel {
             }
         }
     }
+    //должен возвращать контейнер с историей с кольчеством транзакций число транзакций передаем интом
+    //т.е. надо список из последних пяти транзакций предаем ему число 5 должно работать не тестировал
     public ArrayList<NodeHistory> getHistory(int numberOfLastItems){
         ArrayList<NodeHistory> arrayList = new ArrayList<>();
         Statement statement = null;
@@ -179,6 +185,7 @@ public class Kernel {
         }
         return arrayList;
     }
+    //проверка клиента (доделать)
     public Client checkClient(String name, String password){
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
@@ -214,6 +221,7 @@ public class Kernel {
         }
         return client;
     }
+    //закрть подключение к БД
     public void close(){
         try {
             assert connection!=null;
@@ -222,4 +230,11 @@ public class Kernel {
             e.printStackTrace();
         }
     }
+    /*
+    public static void main(String[] args) {
+        Kernel kernel = new Kernel();
+        ArrayList<NodeHistory> bankAccounts = kernel.getHistory(5);
+        System.out.println(bankAccounts);
+    }
+     */
 }

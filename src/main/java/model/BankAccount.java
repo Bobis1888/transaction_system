@@ -8,10 +8,10 @@ public class BankAccount implements Serializable {
     private String nameOwner;
     private boolean active;
     public String toString(){
-        return  "Name owner: " + nameOwner + "\n" +
-                "Account number : " + accountNumber + "\n" +
-                "Account balance : " + accountBalance + "\n" +
-                "Account status : " + active + "\n";
+        return  "\n---< Name Owner : " + nameOwner + " >---\n" +
+                "*-Account number :  " + accountNumber + "\n" +
+                "*-Account balance : " + accountBalance + "\n" +
+                "*-Account status :  " + active + "\n";
     }
     public int getAccountNumber() {
         return accountNumber;
