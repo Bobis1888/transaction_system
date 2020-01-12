@@ -18,6 +18,6 @@ public class HistoryServlet extends HttpServlet {
         Kernel kernel = new Kernel();
         ArrayList<NodeHistory> node = kernel.getHistory();
         req.setAttribute("node",node);
-        getServletContext().getRequestDispatcher("/log.jsp").forward(req,resp);
+        getServletContext().getRequestDispatcher("/secure/log.jsp").forward(req,resp);
     }
 }

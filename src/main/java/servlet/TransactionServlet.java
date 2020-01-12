@@ -18,6 +18,6 @@ public class TransactionServlet extends HttpServlet {
         Kernel kernel = new Kernel();
         kernel.transaction(numberSender,numberRecipient,sum);
         kernel.close();
-        getServletContext().getRequestDispatcher("/index.jsp").forward(req,resp);
+        getServletContext().getRequestDispatcher("/secure/index.jsp").forward(req,resp);
     }
 }

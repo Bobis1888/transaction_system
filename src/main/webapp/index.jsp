@@ -1,17 +1,20 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: bobis1888
+  Date: 12/22/19
+  Time: 12:52 AM
+  To change this template use File | Settings | File Templates.
+--%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <link rel="stylesheet" href="style.css">
-    <title>Bank</title>
+    <title>Login</title>
 </head>
 <body>
-<jsp:include page="links.html"/>
-<div class="header">
-	<h1>Bank of Great Mumbai</h1>
-    <div class="beta">beta 0.4.1</div>
-</div>
-<h3>Hello customer!</h3>
-<div><a href="transaction.jsp"> Send money your BRO</a></div>
-<div><a href="">Show you cash(Sorry does not work)</a></div>
+<form action="logServlet" method="get">
+    Login : <input type="text" name="name"/><br/>
+    Password : <input type="password" name="password"/><br/>
+    <input type="submit" name="login">
+</form>
 </body>
 </html>

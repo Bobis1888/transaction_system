@@ -27,6 +27,37 @@ public class Client implements Serializable {
         return "Name : " + clientName + " Age : " + age + " Gender : " + gender.toUpperCase();
     }
 
+    @Override
+    public int hashCode() {
+        int p = 31;
+        int result = 1;
+        result = result * p + this.id;
+        result = result * p + this.age;
+        result = result * p + this.clientName.length();
+        result = result * p + this.password.length();
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null){
+            return false;
+        }
+        if (this == o){
+            return true;
+        }
+        if (getClass() != o.getClass()){
+            return false;
+        }
+        Client client = (Client)o;
+        return  this.id == client.id
+                && this.age == client.age
+                && this.gender.equals(client.gender)
+                && this.password.equals(client.password)
+                && this.clientName.equals(client.clientName)
+                && this.active == client.active;
+    }
+
     public ArrayList<BankAccount> getBankAccounts() {
         return bankAccounts;
     }

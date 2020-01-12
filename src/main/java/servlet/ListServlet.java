@@ -19,6 +19,6 @@ public class ListServlet extends HttpServlet {
         ArrayList<BankAccount> bankAccounts = kernel.getListBankAccount();
         kernel.close();
         req.setAttribute("list",bankAccounts);
-        getServletContext().getRequestDispatcher("/list.jsp").forward(req,resp);
+        getServletContext().getRequestDispatcher("/secure/list.jsp").forward(req,resp);
     }
 }

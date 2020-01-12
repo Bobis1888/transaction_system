@@ -7,12 +7,42 @@ public class BankAccount implements Serializable {
     private int accountBalance;
     private String nameOwner;
     private boolean active;
+    @Override
     public String toString(){
         return  "\n---< Name Owner : " + nameOwner + " >---\n" +
                 "*-Account number :  " + accountNumber + "\n" +
                 "*-Account balance : " + accountBalance + "\n" +
                 "*-Account status :  " + active + "\n";
     }
+
+    @Override
+    public int hashCode() {
+        int p = 31;
+        int result = 1;
+        result = result * p + accountNumber;
+        result = result * p + accountBalance;
+        result = result * p + nameOwner.length();
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null){
+            return false;
+        }
+        if (this == o){
+            return true;
+        }
+        if (getClass() != o.getClass()){
+            return false;
+        }
+        BankAccount account = (BankAccount)o;
+        return  this.active == account.active
+                && this.nameOwner.equals(account.nameOwner)
+                && this.accountNumber == account.accountNumber
+                && this.accountBalance == account.accountBalance;
+    }
+
     public int getAccountNumber() {
         return accountNumber;
     }
@@ -32,6 +62,7 @@ public class BankAccount implements Serializable {
     public void addAccountBalance(int amount){
         accountBalance+=amount;
     }
+
     public void deductAccountBalance(int amount){
         accountBalance-=amount;
     }
