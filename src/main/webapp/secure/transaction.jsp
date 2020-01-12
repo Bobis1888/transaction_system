@@ -25,7 +25,9 @@
     <br>
     Amount :<label class="label">
     <input type="text" name="amount">
+    <br>
 </label>
+    <br>
     <input type="submit" value="Transaction">
 </form>
 </body>

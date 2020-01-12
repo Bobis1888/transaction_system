@@ -29,3 +29,9 @@ create table transaction_history
     amount    int(255)    not null,
     dat       varchar(30) not null
 );
+
+Добавить юсера для томкат
+в /tomcat/conf/tomcat-users.xml добавить
+
+    <role rolename="client"/>
+    <user username="client" password="123" roles="client"/>

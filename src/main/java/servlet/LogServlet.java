@@ -10,7 +10,7 @@ import java.io.IOException;
 @WebServlet("/logServlet")
 public class LogServlet extends HttpServlet {
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         getServletContext().getRequestDispatcher("/secure/index.jsp").forward(req,resp);
     }
 }

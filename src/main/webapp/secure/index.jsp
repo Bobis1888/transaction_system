@@ -11,7 +11,7 @@
     <div class="beta">beta 0.4.1</div>
 </div>
 <h3>Hello customer!</h3>
-<div><a href="transaction.jsp"> Send money your BRO</a></div>
+<div><a href="/secure/transaction.jsp"> Send money your BRO</a></div>
 <div><a href="">Show you cash(Sorry does not work)</a></div>
 </body>
 </html>

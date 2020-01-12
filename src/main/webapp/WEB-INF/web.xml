@@ -3,5 +3,21 @@
  "http://java.sun.com/dtd/web-app_2_3.dtd" >
 
 <web-app>
-  <display-name>Archetype Created Web Application</display-name>
+  <display-name>Bank</display-name>
+  <security-constraint>
+    <web-resource-collection>
+      <web-resource-name>Bank</web-resource-name>
+      <url-pattern>/secure/*</url-pattern>
+    </web-resource-collection>
+    <auth-constraint>
+      <role-name>client</role-name>
+    </auth-constraint>
+  </security-constraint>
+  <login-config>
+    <auth-method>BASIC</auth-method>
+    <realm-name>Bank</realm-name>
+  </login-config>
+  <security-role>
+    <role-name>client</role-name>
+  </security-role>
 </web-app>
