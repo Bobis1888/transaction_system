@@ -12,6 +12,7 @@ TransactionSystem ver 0.1.0.1 (Simple internet bank)                         Bob
 Сделать
 переиминовать kontroller>>controler
 закрыть controller.DB file.reader.close();
+прописать нормальный путь к properties файлу
 Tomcat JDBCRealm (авторизация через БД)
 просмотр баланса счета и его активности (заблокирован или нет)
 просмотр истории только по конкретному счету , дате , или получателю.
