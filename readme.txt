@@ -10,6 +10,7 @@ TransactionSystem ver 0.1.0.1 (Simple internet bank)                         Bob
 авторизация BASIC
 ------------------------------------------------------------------------------------------------
 Сделать
+сохранить дамп БД
 переиминовать kontroller>>controler
 закрыть controller.DB file.reader.close();
 прописать нормальный путь к properties файлу
