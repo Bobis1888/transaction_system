@@ -1,6 +1,6 @@
 package servlet;
 
-import kontroller.Kernel;
+import cntroller.Kernel;
 import model.NodeHistory;
 
 import javax.servlet.ServletException;

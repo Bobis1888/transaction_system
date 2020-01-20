@@ -1,7 +1,8 @@
-package kontroller;
+package cntroller;
 
 import java.io.File;
 import java.io.FileReader;
+import java.io.IOException;
 import java.util.Properties;
 
 public class DB {
@@ -10,10 +11,11 @@ public class DB {
     private String url;
     private String forName;
     DB(){
+        FileReader fileReader = null;
         try {
             //переписать путь по нормальному
             File file = new File("/home/bobis1888/Git/transaction_system/src/main/resources/login.properties");
-            FileReader fileReader = new FileReader(file);
+            fileReader = new FileReader(file);
             Properties properties = new Properties();
             properties.load(fileReader);
             login = properties.getProperty("login");
@@ -22,12 +24,15 @@ public class DB {
             forName = properties.getProperty("forName");
         }catch (Exception e){
             e.printStackTrace();
+        }finally {
+            try {
+                if (fileReader != null) {
+                    fileReader.close();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
-    }
-
-    public static void main(String[] args) {
-        DB db = new DB();
-        System.out.println(db.pass);
     }
     public String getLogin() {
         return login;

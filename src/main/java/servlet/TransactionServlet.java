@@ -1,6 +1,6 @@
 package servlet;
 
-import kontroller.Kernel;
+import cntroller.Kernel;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

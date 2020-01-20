@@ -30,6 +30,7 @@ create table transaction_history
     dat       varchar(30) not null
 );
 
+сделать инсерты из resources/
 Добавить юсера для томкат
 в /tomcat/conf/tomcat-users.xml добавить
 

@@ -1,4 +1,4 @@
-package kontroller;
+package cntroller;
 
 import model.BankAccount;
 import model.Client;
@@ -40,8 +40,8 @@ public class Kernel {
             e.printStackTrace();
         } finally {
             try {
-                assert preparedStatement != null;
-                preparedStatement.close();
+                if(preparedStatement != null)
+                    preparedStatement.close();
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -82,8 +82,8 @@ public class Kernel {
             e.printStackTrace();
         } finally {
             try {
-                assert preparedStatement != null;
-                preparedStatement.close();
+                if (preparedStatement!=null)
+                    preparedStatement.close();
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -109,14 +109,10 @@ public class Kernel {
             e.printStackTrace();
         }finally {
             try {
-                assert statement != null;
-                statement.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-            try {
-                assert result!=null;
-                result.close();
+               if (statement != null)
+                   statement.close();
+               if (result != null)
+                   result.close();
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -141,8 +137,8 @@ public class Kernel {
             e.printStackTrace();
         }finally {
             try {
-                assert preparedStatement != null;
-                preparedStatement.close();
+                if (preparedStatement != null)
+                    preparedStatement.close();
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -169,6 +165,15 @@ public class Kernel {
             }
         }catch (SQLException e){
             e.printStackTrace();
+        }finally {
+            try {
+                if (statement != null)
+                    statement.close();
+                if (resultSet != null)
+                    resultSet.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
         return arrayList;
     }
@@ -211,8 +216,8 @@ public class Kernel {
     //закрть подключение к БД
     public void close(){
         try {
-            assert connection!=null;
-            connection.close();
+            if (connection!=null)
+                connection.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
