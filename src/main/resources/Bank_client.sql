@@ -1,0 +1,1 @@
+INSERT INTO Bank.client (id, name, age, password, gender) VALUES (1, 'bob', 32, 555, 'm');
