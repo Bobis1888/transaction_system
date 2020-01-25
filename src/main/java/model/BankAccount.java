@@ -9,10 +9,10 @@ public class BankAccount implements Serializable {
     private boolean active;
     @Override
     public String toString(){
-        return  "\n---< Name Owner : " + nameOwner + " >---\n" +
-                "*-Account number :  " + accountNumber + "\n" +
-                "*-Account balance : " + accountBalance + "\n" +
-                "*-Account status :  " + active + "\n";
+        return  "*--Account number :  " + accountNumber + "<br>" +
+                "*--Account balance : " + accountBalance + "<br>" +
+                "*----Account status :  " + active + "<br>" + "<br>" +
+                "*------Name Owner : " + nameOwner + "<br>";
     }
 
     @Override

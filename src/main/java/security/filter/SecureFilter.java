@@ -7,6 +7,7 @@ import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
+//проверка доступа
 @WebFilter("/secure/*")
 public class SecureFilter implements Filter {
     @Override

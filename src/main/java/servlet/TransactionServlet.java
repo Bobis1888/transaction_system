@@ -16,7 +16,10 @@ public class TransactionServlet extends HttpServlet {
         String numberRecipient = req.getParameter("recipient");
         int sum = Integer.parseInt(req.getParameter("amount"));
         Kernel kernel = new Kernel();
-        kernel.transaction(numberSender,numberRecipient,sum);
+        boolean transaction = kernel.transaction(numberSender,numberRecipient,sum);
+        if (transaction){
+            req.setAttribute("transactionBoolean", true);
+        }
         kernel.close();
         getServletContext().getRequestDispatcher("/secure/homePage.jsp").forward(req,resp);
     }

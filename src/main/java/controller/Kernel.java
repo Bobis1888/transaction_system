@@ -8,6 +8,8 @@ import java.sql.*;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
+
 //разбить на несколько классов
 //упростить логику написать отдельные классы под разные операции (транзакции, история и тд.)
 public class Kernel {
@@ -91,6 +93,7 @@ public class Kernel {
         }
         return bankAccount;
     }
+    //root-method
     //возвращает контейрер с наполненными BankAccount
     //надо переписать два похожих метода getBankAccount и getListBankAccount
     public ArrayList<BankAccount> getListBankAccount(){
@@ -120,6 +123,18 @@ public class Kernel {
         }
         return bankAccounts;
     }
+
+    //получить все счета клиента
+    public ArrayList<BankAccount> getListBankAccount(String nameOwner){
+        ArrayList<BankAccount> bankAccounts = getListBankAccount();
+        ArrayList<BankAccount> result = new ArrayList<>();
+        for (BankAccount bankAccount : bankAccounts){
+            if (bankAccount.getNameOwner().equals(nameOwner))
+                result.add(bankAccount);
+        }
+        return result;
+    }
+
     //пишем историю в БД можно получить методом getHistory()
     private void writeHistory(String numberBankAccountSender, String numberBankAccountRecipient,int amount){
         PreparedStatement preparedStatement = null;
@@ -178,7 +193,7 @@ public class Kernel {
         }
         return arrayList;
     }
-    //проверка клиента (доделать)
+    //проверка клиента если все ОК возвращаем наполненую модель клиента
     public Client checkClient(String name, String password){
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
@@ -198,7 +213,6 @@ public class Kernel {
                 client.setNameClient(resultSet.getString(2));
                 client.setAge(resultSet.getInt(3));
                 client.setGender(resultSet.getString(5));
-                client.setPassword(resultSet.getString(4));
             }
         }catch (SQLException e){
             e.printStackTrace();
@@ -226,7 +240,7 @@ public class Kernel {
 
     public static void main(String[] args) {
         Kernel kernel = new Kernel();
-        Client client = kernel.checkClient("bob","23");
-        System.out.println(client);
+        ArrayList<BankAccount> bankAccounts = kernel.getListBankAccount("bob");
+        System.out.println(bankAccounts);
     }
 }

@@ -24,6 +24,10 @@ public class SecureServlet extends HttpServlet {
         ServletContext servletContext = req.getServletContext();
         client = kernel.checkClient(userName,password);
         kernel.close();
+        //если в базе есть клиент с таким userName и password
+        //save to session
+        //задаем ключ авторизации полсе будем проверять его в security.filter.SecurityFilter
+        //ключ = шифр Client.id в security.Encrypt
         if (client!=null) {
             String keyAuth = Encrypt.encrypt(client.getId());
             client.setKeyAuth(keyAuth);

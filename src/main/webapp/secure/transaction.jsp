@@ -1,4 +1,4 @@
-<%--
+<%@ page import="model.Client" %><%--
   Created by IntelliJ IDEA.
   User: bobis1888
   Date: 12/4/19
@@ -13,7 +13,9 @@
 </head>
 <body>
 <jsp:include page="links.html"/>
-<h2>Hello customer</h2>
+<h3>Hello <%
+    out.print(((Client)session.getAttribute("client")).getNameClient());
+%>!</h3>
 <form action="/transaction" class="form_transaction">
     Account number sender :<label class="label">
     <input type="text" name="sender">

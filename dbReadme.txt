@@ -10,14 +10,24 @@ create table bank_account
     balance             int         not null
 );
 
+create table bank_account
+(
+    number_bank_account int         not null,
+    name_owner          varchar(30) not null,
+    is_active           tinyint(1)  not null,
+    balance             int         not null
+);
+
 create table client
 (
-    id       int(30) auto_increment
+    id          int(30) auto_increment
         primary key,
-    name     varchar(30) not null,
-    age      int         not null,
-    password int(8)      not null,
-    gender   varchar(1)  not null
+    name        varchar(30) not null,
+    age         int         not null,
+    password    int(8)      not null,
+    gender      varchar(1)  not null,
+    role        varchar(10) not null,
+    bankAccount int(100)    null
 );
 
 create table transaction_history
@@ -31,8 +41,3 @@ create table transaction_history
 );
 
 сделать инсерты из resources/
-Добавить юсера для томкат
-в /tomcat/conf/tomcat-users.xml добавить
-
-    <role rolename="client"/>
-    <user username="client" password="123" roles="client"/>
