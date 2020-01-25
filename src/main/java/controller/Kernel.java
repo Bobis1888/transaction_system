@@ -1,4 +1,4 @@
-package cntroller;
+package controller;
 
 import model.BankAccount;
 import model.Client;
@@ -8,7 +8,8 @@ import java.sql.*;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-
+//разбить на несколько классов
+//упростить логику написать отдельные классы под разные операции (транзакции, история и тд.)
 public class Kernel {
     private PreparedStatement preparedStatement;
     private Connection connection;
@@ -225,7 +226,7 @@ public class Kernel {
 
     public static void main(String[] args) {
         Kernel kernel = new Kernel();
-        ArrayList<NodeHistory> bankAccounts = kernel.getHistory();
-        System.out.println(bankAccounts);
+        Client client = kernel.checkClient("bob","23");
+        System.out.println(client);
     }
 }

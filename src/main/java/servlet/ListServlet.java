@@ -1,7 +1,7 @@
 package servlet;
 
 import model.BankAccount;
-import cntroller.Kernel;
+import controller.Kernel;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

@@ -12,6 +12,6 @@
 </head>
 <body>
     <p>Wrong User name or Password!</p>
-    <p>Please try again <a href="index.jsp"></a></p>
+    <p><a href="/index.jsp">Please try again</a></p>
 </body>
 </html>

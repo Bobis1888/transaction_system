@@ -1,1 +1,2 @@
-INSERT INTO Bank.client (id, name, age, password, gender) VALUES (1, 'bob', 32, 555, 'm');
+INSERT INTO Bank.client (id, name, age, password, gender, role, bankAccount) VALUES (1, 'bob', 32, 555, 'm', 'client', null);
+INSERT INTO Bank.client (id, name, age, password, gender, role, bankAccount) VALUES (2, 'john', 22, 123, 'm', 'admin', null);

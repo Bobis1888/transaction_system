@@ -1,6 +1,6 @@
 package servlet;
 
-import cntroller.Kernel;
+import controller.Kernel;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -18,6 +18,6 @@ public class TransactionServlet extends HttpServlet {
         Kernel kernel = new Kernel();
         kernel.transaction(numberSender,numberRecipient,sum);
         kernel.close();
-        getServletContext().getRequestDispatcher("/secure/index.jsp").forward(req,resp);
+        getServletContext().getRequestDispatcher("/secure/homePage.jsp").forward(req,resp);
     }
 }

@@ -11,6 +11,6 @@ import java.io.IOException;
 public class LogServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        getServletContext().getRequestDispatcher("/secure/index.jsp").forward(req,resp);
+        getServletContext().getRequestDispatcher("/secure/homePage.jsp").forward(req,resp);
     }
 }

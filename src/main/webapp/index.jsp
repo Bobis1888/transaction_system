@@ -11,13 +11,9 @@
     <title>Login</title>
 </head>
 <body>
-<form action="logServlet" method="post">
-    Input for username: client
-    <br>
-    <!--<input name="j_username" type="text">--><br>
-    Input for password: 123
-    <br>
-    <!--<input name="j_password" type="password">--><br>
+<form action="/secureServlet" method="post">
+    Username:<input name="userName" type="text"><br>
+    Password:<input name="password" type="password"><br>
     <input type="submit" value="Login">
 </form>
 </body>

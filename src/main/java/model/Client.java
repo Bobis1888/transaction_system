@@ -9,18 +9,17 @@ public class Client implements Serializable {
     private String clientName;
     private String gender;
     private int age;
+    //ключ для проверки аунтетификации
+    private String keyAuth;
     private String password;
     private ArrayList<BankAccount> bankAccounts;
+    private ArrayList<String> roles;
     private boolean active;
+
 
     public Client(){
         bankAccounts = new ArrayList<>();
-    }
-    Client(String clientName,String gender,int age){
-        this();
-        this.gender = gender;
-        this.age = age;
-        this.clientName = clientName;
+        roles = new ArrayList<>();
     }
     @Override
     public String toString(){
@@ -53,17 +52,38 @@ public class Client implements Serializable {
         return  this.id == client.id
                 && this.age == client.age
                 && this.gender.equals(client.gender)
-                && this.password.equals(client.password)
-                && this.clientName.equals(client.clientName)
-                && this.active == client.active;
+                && this.clientName.equals(client.clientName);
     }
 
+    public void setKeyAuth(String keyAuth){
+        this.keyAuth = keyAuth;
+    }
+
+    public String getKeyAuth(){
+        return this.keyAuth;
+    }
+
+    public void setRoles(String role){
+        roles.add(role);
+    }
+
+    public ArrayList<String> getRoles(){
+        return roles;
+    }
+
+    public void removeRole(String role){
+        roles.remove(role);
+    }
     public ArrayList<BankAccount> getBankAccounts() {
         return bankAccounts;
     }
 
     public void addBankAccount(BankAccount bankAccount){
         bankAccounts.add(bankAccount);
+    }
+
+    public void deleteBankAccount(BankAccount bankAccount){
+        bankAccounts.remove(bankAccount);
     }
 
     public void setNameClient(String clientName) {

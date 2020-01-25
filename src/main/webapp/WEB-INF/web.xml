@@ -4,20 +4,8 @@
 
 <web-app>
   <display-name>Bank</display-name>
-  <security-constraint>
-    <web-resource-collection>
-      <web-resource-name>Bank</web-resource-name>
-      <url-pattern>/secure/*</url-pattern>
-    </web-resource-collection>
-    <auth-constraint>
-      <role-name>client</role-name>
-    </auth-constraint>
-  </security-constraint>
-  <login-config>
-    <auth-method>BASIC</auth-method>
-    <realm-name>Bank</realm-name>
-  </login-config>
-  <security-role>
-    <role-name>client</role-name>
-  </security-role>
+
+  <welcome-file-list>
+    <welcome-file>/index.jsp</welcome-file>
+  </welcome-file-list>
 </web-app>

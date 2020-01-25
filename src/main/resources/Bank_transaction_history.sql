@@ -5,3 +5,4 @@ INSERT INTO Bank.transaction_history (id, sender, recipient, amount, dat) VALUES
 INSERT INTO Bank.transaction_history (id, sender, recipient, amount, dat) VALUES (5, 5555, 6666, 5888, '2020-01-10 17:46:49');
 INSERT INTO Bank.transaction_history (id, sender, recipient, amount, dat) VALUES (6, 5566, 556, 100, '2020-01-10 18:02:32');
 INSERT INTO Bank.transaction_history (id, sender, recipient, amount, dat) VALUES (7, 5566, 556, 600, '2020-01-13 00:36:54');
+INSERT INTO Bank.transaction_history (id, sender, recipient, amount, dat) VALUES (8, 5566, 556, 200, '2020-01-25 22:45:36');
